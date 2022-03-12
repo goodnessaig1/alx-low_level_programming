@@ -1,2 +1,2 @@
 # alx-low_level_programming
- hello world repo
+ C programming for a start
