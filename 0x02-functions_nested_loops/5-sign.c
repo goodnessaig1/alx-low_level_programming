@@ -1,4 +1,5 @@
-#include "holberton.h"
+#include <stdio.h>
+#include "main.h"
 /**
 * print_sign - checks the polarity
 * @n : integer to be checked
