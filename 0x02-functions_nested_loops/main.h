@@ -1,8 +1,11 @@
-#ifndef MAIN_H
-#define MAIN_H
-void _putchar(char put);
+#ifndef HOLBERTON_H
+#define HOLBERTON_H
+
+/* _putchar.c */
+int _putchar(char);
+
+/* 1-alphabet.c */
 void print_alphabet(void);
-void print_alphabet_x10(void)
 
 /* 2-print_alphabet_x10.c */
 void print_alphabet_x10(void);
@@ -36,4 +39,5 @@ void print_to_98(int);
 
 /* 100-times_table.c*/
 void print_times_table(int);
+
 #endif
