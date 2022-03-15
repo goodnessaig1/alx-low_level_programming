@@ -1,13 +1,11 @@
-
-#include "holberton.h"
+#include "main.h"
 
 /**
- * print_sign - check numers
- * @n : number to check
- * Return:0 or 1
+ * main - check the code.
+ *
+ * Return: Always 0.
  */
-
-int print_sign(int n)
+int main(void)
 {
 int test;
 
