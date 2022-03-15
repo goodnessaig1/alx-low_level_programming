@@ -1,20 +1,12 @@
 #include "main.h"
 
 /**
- * print_alphabet - Entry point
- * Return:0
+ * main - check the code
+ *
+ * Return: Always 0.
  */
-
-void print_alphabet(void)
+int main(void)
 {
-	char c = 'a';
-
-	while (c <= 'z')
-	{
-		_putchar(c);
-		c++;
-
-	}
-	_putchar('\n');
-return (0);
+    print_alphabet();
+    return (0);
 }
