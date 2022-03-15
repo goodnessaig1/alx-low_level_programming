@@ -1,9 +1,10 @@
 #include "holberton.h"
 /**
- * print_sign - returns 1 if n is +, - if n < 0 0 otherwise
- * @n: integer to be tested
- * Return: 1, -1 or 0
- */
+* print_sign - checks the polarity
+* @n : integer to be checked
+* Return: 0, 1, -1
+*
+*/
 int print_sign(int n)
 {
 	if (n > 0)
