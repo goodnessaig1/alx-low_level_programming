@@ -2,58 +2,65 @@
 #include <stdio.h>
 
 /**
- * main - check the code
- *
- * Return: Always 0.
+ * infinite_add - add 2 integers.
+ * @n1: integer
+ * @n2: integer
+ * @r: buffer
+ * size_r: size of r
+ * Return: char
  */
-int main(void)
-{
-        char *n = "1234567892434574367823574575678477685785645685876876774586734734563456453743756756784458";
-        char *m = "9034790663470697234682914569346259634958693246597324659762347956349265983465962349569346";
-        char r[100];
-        char r2[10];
-        char r3[11];
-        char *res;
 
-        res = infinite_add(n, m, r, 100);
-        if (res == 0)
-        {
-                printf("Error\n");
-        }
-        else
-        {
-                printf("%s + %s = %s\n", n, m, res);
-        }
-        n = "1234567890";
-        m = "1";
-        res = infinite_add(n, m, r2, 10);
-        if (res == 0)
-        {
-                printf("Error\n");
-        }
-        else
-        {
-                printf("%s + %s = %s\n", n, m, res);
-        }
-        n = "999999999";
-        m = "1";
-        res = infinite_add(n, m, r2, 10);
-        if (res == 0)
-        {
-                printf("Error\n");
-        }
-        else
-        {
-                printf("%s + %s = %s\n", n, m, res);
-        }
-        res = infinite_add(n, m, r3, 11);
-        if (res == 0)
-        {
-                printf("Error\n");
-        }
-        else
-        {
-                printf("%s + %s = %s\n", n, m, res);
-        }
-        return (0);
+int _atoi(char *s)
+{
+	int sign = 1, resp = 0, firstNum;
+
+	for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
+	{
+		if (s[firstNum] == '-')
+		{
+			sign *= -1;
+		}
+	}
+
+	for (int i = firstNum; s[i] >= 48 && s[i] <= 57; i++)
+	{
+		resp *= 10;
+		resp += (s[i] - 48);
+	}
+
+	return (sign * resp);
+}
+
+void int_to_string(int n)
+{
+int divisor = 1, i, resp;
+
+
+for (i = 0; n / divisor > 9; i++)
+{
+	divisor *= 10;
+}
+
+char str[i];
+
+for (int cmpt = 0; divisor >= 10; divisor /= 10, cmpt++)
+{
+	resp = n / divisor;
+	str[cmpt] = '0' + resp;
+	n = n - resp * divisor;
+}
+str[i] = ('0' + n);
+
+}
+
+
+char *infinite_add(char *n1, char *n2, char *r, int size_r)
+{
+    int sum, a, b;
+    a = _atoi(n1);
+    b = _atoi(n2);
+
+    sum = a + b;
+
+
 }
