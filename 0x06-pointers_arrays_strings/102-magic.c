@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 int main(void)
 {
   int n;
@@ -15,10 +16,8 @@ int main(void)
    * - only one statement
    * - you are not allowed to code anything else than this line of code
    */
-
-   printf("a[2] = %d\n", a[2]);
-  ;
+  printf("a[2] = %d\n", a[2]);
   /* ...so that this prints 98\n */
-
+  ;
   return (0);
 }
