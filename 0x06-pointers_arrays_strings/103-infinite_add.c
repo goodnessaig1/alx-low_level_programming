@@ -1,104 +1,54 @@
 #include "main.h"
 #include <stdio.h>
 /**
- * _strlen - returns the length of a string
- * @s: string s
- * Return: length of string
- */
-int _strlen(char *s)
-{
-	char *p = s;
-
-	while (*s)
-		s++;
-	return (s - p);
-}
-
-/**
- * rev_string - reverses a string
- * @s: string s
- */
-void rev_string(char *s)
-{
-	int i = 0;
-	int size = _strlen(s);
-	char temp;
-
-	while (i < size)
-	{
-		temp = *(s + i);
-		*(s + i) = *(s + size - 1);
-		*(s + size - 1) = temp;
-		i++;
-		size--;
-	}
-}
-
-/**
- * returnRes - changes pretotal to digit to be added
- * @sum: pre-total
- * @plusOne: flag to add one to res
- * Return: returns digit to be placed into array
- */
-int returnRes(int sum, int plusOne)
-{
-	int res;
-
-	if (sum == 9 && plusOne)
-		res = 0;
-	else if ((sum >= 10 && plusOne) || (sum < 9 && plusOne))
-		res = (sum % 10) + 1;
-	else
-		res = sum % 10;
-	return (res);
-}
-
-/**
- * returnPlusOne - determines bool of plusOne
- * @sum: pre-total
- * @plusOne: flag to add one to res
- * Return: 1 if true, 0 if false
- */
-int returnPlusOne(int sum, int plusOne)
-{
-	if (sum > 9)
-		plusOne = 1;
-	else if (sum == 9 && plusOne)
-		plusOne = 1;
-	else
-		plusOne = 0;
-	return (plusOne);
-}
-
-/**
- * infinite_add - function that adds two numbers
+ * infinite_add -  adds two numbers
  * @n1: first number
  * @n2: second number
- * @r: buffer that the function will use to store the result
- * @size_r: size of buffer
- * Return: pointer to result
+ * @r: result
+ * @size_r: result lenght
+ * Return: sum
+ *
  */
 char *infinite_add(char *n1, char *n2, char *r, int size_r)
-{
-	int sum, res, first, second, i = 0, plusOne = 0;
-	int len1 = _strlen(n1), len2 = _strlen(n2);
-	char *ptr = r;
 
-	while (len1 > 0 || len2 > 0)
-	{
-		first = len1 > 0 ? (*(n1 + len1 - 1) - '0') : 0;
-		second = len2 > 0 ? (*(n2 + len2 - 1) - '0') : 0;
-		sum = first + second;
-		res = returnRes(sum, plusOne);
-		plusOne = returnPlusOne(sum, plusOne);
-		*(ptr + i) = res + '0';
-		len1--;
-		len2--;
+{
+	/* local variable declaration */
+	int i = 0, j = 0, k, l = 0, f, s, d = 0;
+
+	while (n1[i] != '\0')
 		i++;
+	while (n2[j] != '\0')
+		j++;
+	if (i > j)
+		l = i;
+	else
+		l = j;
+	if (l + 1 > size_r)
+		return (0);
+	r[l] = '\0';
+	for (k = l - 1 ; k >= 0 ; k--)
+	{
+		i--;
+		j--;
+		if (i >= 0)
+			f = n1[i] - '0';
+		else
+			f = 0;
+		if (j >= 0)
+			s = n2[j] - '0';
+		else
+			s = 0;
+		r[k] = (f + s + d) % 10 + '0';
+		d = (f + s + d) / 10;
 	}
-	if (plusOne)
-		*(ptr + i) = 1 + '0';
-	ptr[++i] = '\0';
-	rev_string(ptr);
-	return ((size_r > _strlen(ptr)) ? ptr : 0);
+	if (d == 1)
+	{
+		r[l + 1] = '\0';
+		if (l + 2 > size_r)
+			return (0);
+		while (l-- >= 0)
+			r[l + 1] = r[l];
+		r[0] = d + '0';
+	}
+	return (r);
 }
