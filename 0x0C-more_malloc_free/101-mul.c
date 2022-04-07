@@ -3,91 +3,124 @@
 #include <stdlib.h>
 
 /**
- * _puts - prints a string, followed by a new line,
- * @str: pointer to the string to print
- * Return: void
-*/
-
-
-void _puts(char *str)
+ * check_num - function to check the string for number
+ * @st: string being passed
+ * Return: 1 for number 0 for not
+ */
+int check_num(char *st)
 {
-int i = 0;
-while (str[i])
-{
-	_putchar(str[i]);
-	i++;
+	int a;
+
+	for (a = 0; st[a] != '\0'; a++)
+	{
+		if (st[a] < '0' || st[a] > '9')
+			return (0);
+	}
+	return (1);
 }
+/**
+ * string_length - calculating string length
+ * @str: string to check
+ * Return: count
+ *
+ */
+unsigned int string_length(char *str)
+{
+	int a;
 
+	for (a = 0; str[a] != '\0'; a++)
+		a++;
+	return (a);
 }
 
 /**
- * _atoi - convert a string to an integer.
- * @s: char type string
- * Return: integer converted
+ * print_string - function to print string
+ * @st: string to print
+ * Return: none
  */
-
-int _atoi(const char *s)
+void print_string(char *st)
 {
-    int sign = 1;
-	unsigned long int resp = 0, firstNum, i;
-
-	for (firstNum = 0; !(s[firstNum] >= 48 && s[firstNum] <= 57); firstNum++)
+	while (*st == '\0')
+		st++;
+	if (*st == '\0')
+		_putchar('0');
+	while (*st == '0')
+		st++;
+	while (*st != '\0')
 	{
-		if (s[firstNum] == '-')
+		_putchar(*st);
+		st++;
+	}
+	_putchar('\n');
+}
+
+/**
+ * _calloc - function for memory
+ * @number: the number
+ * @size: the size
+ * Return: pointer to memory
+ */
+void *_calloc(unsigned int number, unsigned int size)
+{
+	char *p;
+	unsigned int a;
+
+	if (number == 0 || size == 0)
+		return (NULL);
+	p = malloc(number * size);
+	if (p == 0)
+		return (NULL);
+	for (a = 0; a < (number * size); a++)
+		p[a] = 0;
+	return (p);
+}
+
+/**
+ * main - function to multiply
+ * @argc: number of arguments passed
+ * @argv: argument variables
+ * Return: Always zero
+ */
+int main(int argc, char **argv)
+{
+	char *num1, *num2, *multi_res;
+	unsigned int l = 0, l1 = 0, l2 = 0, a, b, t = 0, c = 0, ten = 0;
+
+	if (argc < 3)
+	{
+		print_string("Error");
+		exit(98);
+	}
+	num1 = argv[1];
+	num2 = argv[2];
+	if (!(check_num(n1) && check_num(n2)))
+	{
+		print_string("Error");
+		exit(98);
+	}
+	l1 = string_length(num1);
+	l2 = string_length(num2);
+	l = l1 + l2;
+	multi_res = _calloc(l + 1, sizeof(char *));
+	if (multi_res == 0)
+	{
+		print_string("Error");
+		exit(98);
+	}
+	for (a = 0; a < l1; a++, ten++)
+	{
+		for (c = 0, b = 0; b < l2; b++)
 		{
-			sign *= -1;
+			t = (num1[l1 - a - 1] - '0') * (num2[l2 - b - 1] - '0') + c;
+			printf("%u\n", t);
+			if (multi_res[l - b - ten - 1] > 0)
+				t = t + multi_res[l - b - ten - 1] - '0';
+			multi_res[l - b - ten - 1] = t % 10 + '0';
+			c = t / 10;
 		}
+		multi_res[l - b - ten - 1] += c + '0';
 	}
-
-	for (i = firstNum; s[i] >= 48 && s[i] <= 57; i++)
-	{
-		resp *= 10;
-		resp += (s[i] - 48);
-	}
-
-	return (sign * resp);
-}
-
-/**
- * print_int - prints an integer.
- * @n: int
- * Return: 0
- */
-
-void print_int(unsigned long int n)
-{
-
-unsigned  long int divisor = 1, i, resp;
-
-for (i = 0; n / divisor > 9; i++, divisor *= 10)
-;
-
-for (; divisor >= 1; n %= divisor, divisor /= 10)
-{
-	resp = n / divisor;
-	_putchar('0' + resp);
-}
-
-}
-
-/**
- * main - print the result of the multiplication, followed by a new line
- * @argc: int
- * @argv: list
- * Return: 0
- */
-
-int main(int argc, char const *argv[])
-{
-(void)argc;
-
-if (argc != 3)
-{
-	_puts("Error ");
-	exit(98);
-}
-print_int(_atoi(argv[1]) * _atoi(argv[2]));
-_putchar('\n');
-
-return (0);
+	print_string(multi_res);
+	free(multi_res);
+	return (0);
 }
