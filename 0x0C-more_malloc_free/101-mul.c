@@ -83,7 +83,7 @@ void *_calloc(unsigned int number, unsigned int size)
  */
 int main(int argc, char **argv)
 {
-	char *num1, *num2, *multi_res;
+	char *n1, *n2, *multi_res;
 	unsigned int l = 0, l1 = 0, l2 = 0, a, b, t = 0, c = 0, ten = 0;
 
 	if (argc < 3)
@@ -91,15 +91,15 @@ int main(int argc, char **argv)
 		print_string("Error");
 		exit(98);
 	}
-	num1 = argv[1];
-	num2 = argv[2];
+	n1 = argv[1];
+	n2 = argv[2];
 	if (!(check_num(n1) && check_num(n2)))
 	{
 		print_string("Error");
 		exit(98);
 	}
-	l1 = string_length(num1);
-	l2 = string_length(num2);
+	l1 = string_length(n1);
+	l2 = string_length(n2);
 	l = l1 + l2;
 	multi_res = _calloc(l + 1, sizeof(char *));
 	if (multi_res == 0)
@@ -111,7 +111,7 @@ int main(int argc, char **argv)
 	{
 		for (c = 0, b = 0; b < l2; b++)
 		{
-			t = (num1[l1 - a - 1] - '0') * (num2[l2 - b - 1] - '0') + c;
+			t = (n1[l1 - a - 1] - '0') * (n2[l2 - b - 1] - '0') + c;
 			printf("%u\n", t);
 			if (multi_res[l - b - ten - 1] > 0)
 				t = t + multi_res[l - b - ten - 1] - '0';
