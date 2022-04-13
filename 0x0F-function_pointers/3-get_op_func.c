@@ -8,6 +8,7 @@
 * Return: return null or the function to do.
 */
 
+
 int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
